@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <h3 class="card-title">Pendaftaran Trip Jalan-kuy</h3>
                     </div>
                     <div class="card-body">
                         <div class="conttainer">
@@ -46,10 +46,18 @@
                                 <td><?= $save['destination']; ?></td>
                                 <td><?= $save['date']; ?></td>
                                 <td>
-                                    <a class="btn btn-primary" href="#"><i
+                                    <a class="btn btn-primary" href="/home/edit/<?= $save['id']; ?>"><i
                                             class="fas fa-edit"> Edit</i></a>
-                                    <a class="btn btn-primary" href="/home/hapus/<?= $save['id']; ?>"><i
-                                            class="far fa-trash-alt"> Delete</i></a>
+                                    
+                                    <form action="/home/<?= $save['id']; ?>" method="POST" class="d-inline">
+                                    <?= csrf_field(); ?>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('apakah yakin untuk hapus?')">
+                                    <i class="fas fa-trash-alt"> Delete</i>
+                                    </button>
+                                    </form>
+                                    <!-- <a class="btn btn-primary" href="/home/hapus/<?= $save['id']; ?>"><i
+                                            class="far fa-trash-alt"> Delete</i></a> -->
                                 </td>
                             </tr>
                             <?php endforeach; ?>

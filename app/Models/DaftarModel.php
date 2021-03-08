@@ -9,7 +9,9 @@ class DaftarModel extends Model
 	protected $table      = 'daftar';
     protected $primaryKey = 'id';
     protected $allowedFields = ['name', 'address', 'number', 'email','destination','date'];
-
+	
+	
+	// protected $session;
 	// public function ajaxGetData($start,$length)
 	// {
 	// 	$result =$this->oerderBy('id','asc')

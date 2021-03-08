@@ -71,5 +71,31 @@ class Home extends BaseController
 		$this->DModel->delete($id);
 		return redirect()->to('/daftar');
 	}
+
+	public function edit($id)
+	{
+		$data=[
+			'validation'=> \Config\Services::validation(),
+			'edit'=>$this->DModel->find($id)
+		];
+		return view('home/edit',$data);
+	}
+
+	public function update($id)
+	{
+		// dd($this->request->getVar());
+		
+		$this->DModel->save([
+			'id'=>$id,
+			'name'=>$this->request->getVar('nama'),
+			'address'=>$this->request->getVar('alamat'),
+			'number'=>$this->request->getVar('jumlah'),
+			'email'=>$this->request->getVar('email'),
+			'destination'=>$this->request->getVar('tujuan'),
+			'date'=>$this->request->getVar('tanggal'),
+		]);
+		session()->setFlashdata('pesan','Data berhasil diupdate');
+		return redirect()->to('/daftar');
+	}
 }
 

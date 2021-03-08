@@ -37,6 +37,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/daftar', 'Home::daftar');
 $routes->get('/schedule', 'Home::price');
 $routes->get('/tambah', 'Home::tambah');
+$routes->delete('/home/(:num)','Home::hapus/$1');
 // $routes->get('/delete', 'Home::hapus');
 /*
  * --------------------------------------------------------------------
