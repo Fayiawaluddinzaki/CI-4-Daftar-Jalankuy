@@ -46,8 +46,15 @@
                                 <td><?= $save['destination']; ?></td>
                                 <td><?= $save['date']; ?></td>
                                 <td>
-                                    <a class="btn btn-primary" href="/home/edit/<?= $save['id']; ?>"><i
-                                            class="fas fa-edit"> Edit</i></a>
+                                    <!-- <a class="btn btn-primary" href="/home/edit/<?= $save['id']; ?>"><i
+                                            class="fas fa-edit"> Edit</i></a> -->
+                                    <form action="/home/edit/<?= $save['id']; ?>" method="POST" class="d-inline">
+                                    <?= csrf_field(); ?>
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <button type="submit" class="btn btn-primary" onclick="return confirm('apakah yakin untuk edit?')">
+                                    <i class="fas fa-edit"> Edit</i>
+                                    </button>
+                                    </form>
                                     
                                     <form action="/home/<?= $save['id']; ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
@@ -65,7 +72,7 @@
                     </div>
                 </div>
             </div>
-        </div>>
+        </div>
     </div>
 </section>
 <!-- akhir content -->

@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/home/daftar"><strong>booking</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/daftar"><strong>booking</strong></a></li>
                     <!-- <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li> -->
                     <li class="nav-item"><a class="nav-link" href="/schedule">schedule</a></li>
                 </ul>

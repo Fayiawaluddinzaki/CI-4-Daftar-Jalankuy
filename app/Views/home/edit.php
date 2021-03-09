@@ -9,7 +9,7 @@
                 <h3 class="text-center"> Tambah Data </h3>
                 
                 <form action="/home/update/<?= $edit['id']; ?>" method="POST">
-                    <?= csrf_field(); ?>
+                    <?= csrf_field(); ?>                    
                     <div class="form-group">
                         <label for="inputAddress">Nama</label>
                         <input type="text" class="form-control" name="nama" value="<?= $edit['name']; ?>">
@@ -44,6 +44,10 @@
                     </div>
                     <div class="form-group">
                     </div>
+                    <!-- <input type="hidden" name="_method" value="UPDATE">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('apakah yakin untuk hapus?')">
+                        <i class="fas fa-edit"> Update</i>
+                    </button> -->
                     <button type="submit" class="btn btn-primary">Update</button>
                     <input class="btn btn-primary mx-2" type="reset" value="Reset">
                     <a name="" id="" class="btn btn-danger" href="/daftar" role="button">Kembali</a>
