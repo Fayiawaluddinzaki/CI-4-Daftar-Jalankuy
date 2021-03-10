@@ -106,7 +106,11 @@
                 dom: 'Bfrtip',
                 responsive: true,
                 buttons: [
-                    'copy', 'excel', 'pdf', 'print', 'csv'
+                    'copy', 
+                    'excel', 
+                    'pdf', 
+                    'print', 
+                    'csv',
                 ]
             });
         });

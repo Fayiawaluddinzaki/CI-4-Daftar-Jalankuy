@@ -5,7 +5,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Pendaftaran Trip Jalan-kuy</h3>
@@ -51,7 +51,7 @@
                                     <form action="/home/edit/<?= $save['id']; ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="PUT">
-                                    <button type="submit" class="btn btn-primary" onclick="return confirm('apakah yakin untuk edit?')">
+                                    <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-edit"> Edit</i>
                                     </button>
                                     </form>
@@ -59,7 +59,7 @@
                                     <form action="/home/<?= $save['id']; ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('apakah yakin untuk hapus?')">
+                                    <button type="submit" class="btn btn-danger">
                                     <i class="fas fa-trash-alt"> Delete</i>
                                     </button>
                                     </form>
