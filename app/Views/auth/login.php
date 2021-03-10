@@ -1,91 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="<?= base_url(); ?>/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.0.1/dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="#" class="h1"><b>Admin</b>LTE</a>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
-
-      <form action="#" method="post">
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+<?= $this->extend('auth/template/index'); ?>
+<?= $this->Section('content'); ?>
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4"><?=lang('Auth.loginTitle')?></h1>
+                </div>
+                <?= view('Myth\Auth\Views\_message_block') ?>
+                <form action="<?= route_to('login') ?>" method="post" class="user">
+                  <?= csrf_field() ?>
+                  <?php if ($config->validFields === ['email']): ?>
+                  <div class="form-group">
+                    <input type="email"
+                      class="form-control form-control-user <?php if(session('errors.login')) : ?>is-invalid<?php endif ?>"
+                      name="login" placeholder="<?=lang('Auth.email')?>">
+                    <?= session('errors.login') ?>
+                  </div>
+                  <?php else: ?>
+                  <div class="form-group">
+                    <input type="text"
+                      class="form-control form-control-user <?php if(session('errors.login')) : ?>is-invalid<?php endif ?>"
+                      name="login" placeholder="<?=lang('Auth.emailOrUsername')?>">
+                    <div class="invalid-feedback">
+                      <?= session('errors.login') ?>
+                    </div>
+                  </div>
+                  <?php endif; ?>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-user <?php if(session('errors.password')) : ?>
+                                                is-invalid<?php endif ?>" name="password"
+                      placeholder="<?=lang('Auth.password')?>">
+                  </div>
+                  <?php if ($config->allowRemembering): ?>
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox small">
+                      <input type="checkbox" class="custom-control-input" id="customCheck"
+                        <?php if(old('remember')) : ?> checked <?php endif ?>>
+                      <label class="custom-control-label" for="customCheck"><?=lang('Auth.rememberMe')?></label>
+                    </div>
+                  </div>
+                  <?php endif; ?>
+                  <button type="submit" class="btn btn-danger btn-user btn-block">
+                    <?=lang('Auth.loginAction')?>
+                  </button>
+                  <a href="/pages" class="btn btn-user btn-block btn-secondary"> Home Page </a>
+                  <hr>
+                </form>
+                <?php if ($config->activeResetter): ?>
+                <div class="text-center">
+                  <a class="small" href="<?= route_to('forgot') ?>">
+                    <?=lang('Auth.forgotYourPassword')?>
+                  </a>
+                </div>
+                <?php endif; ?>
+                <?php if ($config->allowRegistration) : ?>
+                <div class="text-center">
+                  <a class="small" href="<?= route_to('register') ?>">
+                    <?=lang('Auth.needAnAccount')?>
+                  </a>
+                </div>
+                <?php endif; ?>
+              </div>
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      <div class="social-auth-links text-center mt-2 mb-3">
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
       </div>
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
     </div>
-    <!-- /.card-body -->
   </div>
-  <!-- /.card -->
 </div>
-<!-- /.login-box -->
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<!-- Bootstrap 4 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.0.1/dist/js/adminlte.min.js"></script>
-</body>
-</html>
+<?= $this->endSection('content');?>

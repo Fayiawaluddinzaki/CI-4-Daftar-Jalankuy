@@ -1,101 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Registration Page (v2)</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="<?= base_url(); ?>/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.0.1/dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition register-page">
-<div class="register-box">
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="#" class="h1"><b>Admin</b>LTE</a>
+<?= $this->extend('auth/template/index'); ?>
+<?= $this->Section('content'); ?>
+<div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="p-5">
+                            <div class="text-center">
+                            <!-- lang auth register dari myth/auth -->
+                                <h1 class="h4 text-gray-900 mb-4"><?=lang('Auth.register')?></h1>
+                            </div>
+                            <!-- message block dari myth auth -->
+                            <?= view('Myth\Auth\Views\_message_block') ?>
+                            
+                            <form action="<?= route_to('register') ?>" method="post" class="user">
+                                <?= csrf_field() ?>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user <?php if(session('errors.username')) : ?>is-invalid<?php endif ?>" name="username"
+                                        placeholder="<?=lang('Auth.username')?>" value="<?= old('username') ?>">
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user <?php if(session('errors.email')) : ?>is-invalid<?php endif ?>" name="email"
+                                        placeholder="<?=lang('Auth.email')?>" value="<?= old('email') ?>">
+                                        <small id="emailHelp" class="form-text text-muted"><?=lang('Auth.weNeverShare')?></small>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user <?php if(session('errors.password')) : ?>is-invalid<?php endif ?>"
+                                            name="password" placeholder="<?=lang('Auth.password')?>" autocomplete="off">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="pass_confirm" class="form-control form-control-user <?php if(session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>"
+                                             placeholder="<?=lang('Auth.repeatPassword')?>" autocomplete="off">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    <?=lang('Auth.register')?>
+                                </button>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="<?= route_to('login') ?>"> <?=lang('Auth.alreadyRegistered')?> <?=lang('Auth.signIn')?> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-      <p class="login-box-msg">Register a new membership</p>
-
-      <form action="#" method="post">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Retype password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      <div class="social-auth-links text-center">
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div>
-
-      <a href="login.html" class="text-center">I already have a membership</a>
     </div>
-    <!-- /.form-box -->
-  </div><!-- /.card -->
-</div>
-<!-- /.register-box -->
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<!-- Bootstrap 4 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.0.1/dist/js/adminlte.min.js"></script>
-</body>
-</html>
+    </div>
+<?= $this->endSection('content'); ?>
